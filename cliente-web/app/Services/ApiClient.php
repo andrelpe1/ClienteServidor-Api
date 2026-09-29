@@ -15,7 +15,7 @@ class ApiClient
 
     public function chamar(string $metodo, string $caminho, array $corpo = [], bool $comToken = true): array
     {
-        $requisicao = Http::acceptJson();
+        $requisicao = Http::acceptJson()->timeout(19);
 
         if ($comToken && Session::has('token')) {
             $requisicao = $requisicao->withToken(Session::get('token'));

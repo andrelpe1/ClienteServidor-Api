@@ -1,28 +1,26 @@
-<!doctype html>
-<html lang="pt-br">
+@extends('layout')
 
-<head>
-    <meta charset="utf-8">
-    <title>Configurar servidor</title>
-</head>
+@section('titulo', 'Servidor')
 
-<body>
-    <h1>Endereço do servidor</h1>
+@section('conteudo')
+<h1>Endereço do servidor</h1>
+<p class="legenda">O cliente conversa com qualquer servidor que siga o contrato /api/v1.</p>
 
-    @if (session('sucesso'))
-    <p style="color: green">{{ session('sucesso') }}</p>
-    @endif
-
-    @error('base_url')
-    <p style="color: red">{{ $message }}</p>
-    @enderror
-
+<div class="painel">
     <form method="POST" action="{{ route('servidor.salvar') }}">
         @csrf
-        <label for="base_url">URL base (ex.: http://localhost:8080/api/v1)</label><br>
-        <input type="text" id="base_url" name="base_url" value="{{ old('base_url', $baseUrl) }}" style="width: 400px">
-        <button type="submit">Salvar</button>
-    </form>
-</body>
+        <div class="campo">
+            <label for="base_url">url base</label>
+            <input type="text" id="base_url" name="base_url"
+                value="{{ old('base_url', $baseUrl) }}"
+                placeholder="http://localhost:8080/api/v1">
+            @error('base_url') <span class="erro-campo">{{ $message }}</span> @enderror
+        </div>
+        <small class="dica">o /api/v1 é fixo; troque só o ip e a porta</small>
 
-</html>
+        <div class="linha-botoes">
+            <button type="submit">salvar</button>
+        </div>
+    </form>
+</div>
+@endsection
