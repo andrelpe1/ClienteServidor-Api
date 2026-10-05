@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerfilController;
 
+Route::get('/', function () {
+    return redirect()->route(session('token') ? 'perfil.mostrar' : 'login.tela');
+});
+
 Route::get('/servidor', [ServidorController::class, 'editar'])->name('servidor.editar');
 Route::post('/servidor', [ServidorController::class, 'salvar'])->name('servidor.salvar');
 
