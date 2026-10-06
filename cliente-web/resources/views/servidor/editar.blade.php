@@ -9,14 +9,20 @@
 <div class="painel">
     <form method="POST" action="{{ route('servidor.salvar') }}">
         @csrf
+
         <div class="campo">
-            <label for="base_url">url base</label>
-            <input type="text" id="base_url" name="base_url"
-                value="{{ old('base_url', $baseUrl) }}"
-                placeholder="http://localhost:8080/api/v1">
-            @error('base_url') <span class="erro-campo">{{ $message }}</span> @enderror
+            <label for="ip">ip ou host</label>
+            <input type="text" id="ip" name="ip" value="{{ old('ip', $ip) }}" placeholder="localhost">
+            @error('ip') <span class="erro-campo">{{ $message }}</span> @enderror
         </div>
-        <small class="dica">o /api/v1 é fixo; troque só o ip e a porta</small>
+
+        <div class="campo">
+            <label for="porta">porta</label>
+            <input type="text" id="porta" name="porta" value="{{ old('porta', $porta) }}" placeholder="8080">
+            @error('porta') <span class="erro-campo">{{ $message }}</span> @enderror
+        </div>
+
+        <small class="dica">resultado: http://{{ old('ip', $ip ?: 'ip') }}:{{ old('porta', $porta ?: 'porta') }}/api/v1</small>
 
         <div class="linha-botoes">
             <button type="submit">salvar</button>

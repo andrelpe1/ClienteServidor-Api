@@ -1,4 +1,3 @@
-/* ---------- tokens ---------- */
 :root {
     --ink: #0f2225;
     --panel: #14302f;
@@ -51,7 +50,7 @@ a:hover {
     color: var(--paper);
 }
 
-/* ---------- topo: indicador de conexão ---------- */
+
 .topo {
     border-bottom: 1px solid var(--line);
     padding: .9rem 1.25rem;
@@ -126,7 +125,7 @@ nav.trilha a.atual {
     color: var(--signal);
 }
 
-/* ---------- conteúdo ---------- */
+
 main {
     max-width: 34rem;
     margin: 0 auto;
@@ -155,7 +154,7 @@ p.legenda {
     font-size: .95rem;
 }
 
-/* ---------- avisos (respostas do servidor) ---------- */
+
 .aviso {
     font-family: var(--mono);
     font-size: .85rem;
@@ -203,7 +202,7 @@ p.legenda {
     font-weight: 700;
 }
 
-/* ---------- painéis / cartões ---------- */
+
 .painel {
     background: var(--panel);
     border: 1px solid var(--line);
@@ -212,7 +211,7 @@ p.legenda {
     margin-bottom: 1.5rem;
 }
 
-/* ---------- formulários ---------- */
+
 form {
     margin: 0;
 }
@@ -271,7 +270,7 @@ small.dica {
     margin-top: 1.1rem;
 }
 
-/* ---------- botões ---------- */
+
 button,
 .botao {
     font-family: var(--mono);
@@ -330,7 +329,7 @@ button.perigo:hover {
     font-size: inherit;
 }
 
-/* ---------- dados de leitura (perfil) ---------- */
+
 dl.dados {
     margin: 0 0 1.5rem;
 }

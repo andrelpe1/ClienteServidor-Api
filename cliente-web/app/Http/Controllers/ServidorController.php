@@ -11,19 +11,34 @@ class ServidorController extends Controller
 {
     public function editar(): View
     {
-        $atual = Session::get('api_base_url', config('services.api.base_url'));
+        [$ip, $porta] = $this->extrair(Session::get('api_base_url'));
 
-        return view('servidor.editar', ['baseUrl' => $atual]);
+        return view('servidor.editar', ['ip' => $ip, 'porta' => $porta]);
     }
 
     public function salvar(Request $request): RedirectResponse
     {
         $dados = $request->validate([
-            'base_url' => 'required|string|max:255',
+            'ip'    => 'required|string|max:255',
+            'porta' => 'required|integer|min:1|max:65535',
         ]);
 
-        Session::put('api_base_url', rtrim($dados['base_url'], '/'));
+        $url = "http://{$dados['ip']}:{$dados['porta']}/api/v1";
 
-        return redirect()->route('servidor.editar')->with('sucesso', 'Endereço salvo.');
+        Session::put('api_base_url', $url);
+
+        return redirect()->route('servidor.editar')->with('sucesso', "Endereço salvo: {$url}");
+    }
+
+
+    private function extrair(?string $url): array
+    {
+        if (! $url) {
+            return ['localhost', '8080'];
+        }
+
+        $partes = parse_url($url);
+
+        return [$partes['host'] ?? 'localhost', (string) ($partes['port'] ?? '8080')];
     }
 }
