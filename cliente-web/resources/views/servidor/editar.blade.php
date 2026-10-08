@@ -3,6 +3,11 @@
 @section('titulo', 'Servidor')
 
 @section('conteudo')
+<p style="background:yellow;color:black;padding:.5rem">
+    ID da sessão: {{ session()->getId() }} | api_base_url: {{ session('api_base_url') ?? 'VAZIO' }}
+</p>
+
+<h1>Endereço do servidor</h1>
 <h1>Endereço do servidor</h1>
 <p class="legenda">O cliente conversa com qualquer servidor que siga o contrato /api/v1.</p>
 
